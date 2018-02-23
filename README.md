@@ -1,4 +1,4 @@
-# basicRAT
+# RAT
 
 This is a cross-platform Python 2.7.x Remote Access Trojan (RAT). Currently still a work in progress, and gets hacked on as time allows. See the `binaries/` folder for prebuilt client executables.
 
@@ -19,22 +19,22 @@ This is a cross-platform Python 2.7.x Remote Access Trojan (RAT). Currently stil
 
 ### Client
 ```
-C:\>basicRAT_client.exe --ip 127.0.0.1 --port 1337 --timeout 30
+C:\>client.exe --ip 127.0.0.1 --port 1337 --timeout 30
 ```
 Where `ip` is the basicRAT server IP address, `port` is the server listening port, and `timeout` is the number of seconds the client waits to attempt a reconnect to the server (if disconnected). These are the default values if not specified, you will likely need to supply at least an IP and port if using basicRAT outside of your local system.
 
 ### Server
 ```
-$ python basicRAT_server.py --port 1337
+$ python server.py --port 1337
 
- ____    ____  _____ ____   __  ____    ____  ______      .  ,
-|    \  /    |/ ___/|    | /  ]|    \  /    ||      |    (\;/)
-|  o  )|  o  (   \_  |  | /  / |  D  )|  o  ||      |   oo   \//,        _
-|     ||     |\__  | |  |/  /  |    / |     ||_|  |_| ,/_;~      \,     / '
-|  O  ||  _  |/  \ | |  /   \_ |    \ |  _  |  |  |   "'    (  (   \    !
-|     ||  |  |\    | |  \     ||  .  \|  |  |  |  |         //  \   |__.'
-|_____||__|__| \___||____\____||__|\_||__|__|  |__|       '~  '~----''
-         https://github.com/vesche/basicRAT
+ ____    ____  ______      .  ,
+|    \  /    ||      |    (\;/)
+|  D  )|  o  ||      |   oo   \//,        _
+|    / |     ||_|  |_| ,/_;~      \,     / '
+|    \ |  _  |  |  |   "'    (  (   \    !
+|  .  \|  |  |  |  |         //  \   |__.'
+|__|\_||__|__|  |__|       '~  '~----''
+         https://github.com/harshivara/RAT
 
 basicRAT server listening for connections on port 1337.
 
