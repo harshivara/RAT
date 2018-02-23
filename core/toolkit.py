@@ -1,6 +1,6 @@
 #
-# basicRAT toolkit module
-# https://github.com/vesche/basicRAT
+# RAT toolkit module
+# https://github.com/harshivara/RAT
 #
 
 import datetime
