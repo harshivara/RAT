@@ -1,6 +1,6 @@
 #
-# basicRAT crypto module
-# https://github.com/vesche/basicRAT
+# RAT crypto module
+# https://github.com/harshivara/RAT
 #
 
 import os
