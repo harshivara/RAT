@@ -1,21 +1,4 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Marketplace
-Explore
- @harshivara
- Sign out
-1
-0 223 dRl-l/basicRAT
-forked from vesche/basicRAT
- Code  Pull requests 0  Projects 0  Wiki  Insights
-basicRAT/core/toolkit.py
-81282e3  on 27 Jun 2017
- cyankw Add Function: steal wifi password
-    
-113 lines (86 sloc)  2.58 KB
+
 #
 # basicRAT toolkit module
 # https://github.com/vesche/basicRAT
