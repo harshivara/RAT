@@ -1,6 +1,6 @@
 #
-# basicRAT survey module
-# https://github.com/vesche/basicRAT
+# RAT survey module
+# https://github.com/harshivara/RAT
 #
 
 import ctypes
