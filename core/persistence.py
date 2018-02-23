@@ -1,6 +1,6 @@
 #
-# basicRAT persistence module
-# https://github.com/vesche/basicRAT
+# RAT persistence module
+# https://github.com/harshivara/RAT
 #
 
 import sys
